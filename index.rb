@@ -1,6 +1,6 @@
-require "./app/models/person.rb"
-require "./app/models/capitalizeDecorator.rb"
-require "./app/models/trimmerDecorator.rb"
+require './app/models/person'
+require './app/models/capitalize_decorator'
+require './app/models/trimmer_decorator'
 
 person = Person.new(22, 'maximilianus')
 person.correct_name
