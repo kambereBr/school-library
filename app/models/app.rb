@@ -1,7 +1,7 @@
-require './app/models/student'
-require './app/models/teacher'
-require './app/models/book'
-require './app/models/rental'
+require_relative 'student'
+require_relative 'teacher'
+require_relative 'book'
+require_relative 'rental'
 
 module Library
   # Warnig method that displays a wrong message passed
