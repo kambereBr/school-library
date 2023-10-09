@@ -79,19 +79,25 @@ module Library
     puts 'Name:'
     name = gets.chomp
     case choice
-    when '1'
-      student = Student.new(nil, age, name)
-      puts 'Has Parent Permission? [Y/N]:'
-      par_permission = gets.chomp
-      student.parent_permission = (par_permission.upcase == 'Y')
-      list_person.push(student)
-    when '2'
-      teacher = Teacher.new(nil, age, name)
-      puts 'Specialization:'
-      teacher.specialization = gets.chomp
-      list_person.push(teacher)
+    when '1' then create_student(age, name, list_person)
+    when '2' then create_teacher(age, name, list_person)
     end
     success_msg('Person')
+  end
+
+  def create_student(age, name, list_person)
+    student = Student.new(nil, age, name)
+    puts 'Has Parent Permission? [Y/N]:'
+    par_permission = gets.chomp
+    student.parent_permission = (par_permission.upcase == 'Y')
+    list_person.push(student)
+  end
+
+  def create_teacher(age, name, list_person)
+    teacher = Teacher.new(nil, age, name)
+    puts 'Specialization:'
+    teacher.specialization = gets.chomp
+    list_person.push(teacher)
   end
 
   # Method that helps to add new book to the array
