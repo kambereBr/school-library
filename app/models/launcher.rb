@@ -3,11 +3,13 @@ require_relative 'file_manager'
 
 class Launcher
   include Library
-  attr_accessor :file_manager, :books
+  attr_accessor :file_manager, :books, :person, :rentals
 
   def initialize
     @file_manager = FileManager.new
-    @books = @file_manager.load_data
+    @books = @file_manager.load_books
+    @person = @file_manager.load_person
+    @rentals = @file_manager.load_rental
   end
 
   # Print list of Main options
@@ -42,6 +44,8 @@ class Launcher
     when '6' then get_user_rental(all_person)
     when '7'
       @file_manager.books = all_books
+      @file_manager.person = all_person
+      @file_manager.rentals = all_rentals
       @file_manager.save_data
       sleep 3
       exit

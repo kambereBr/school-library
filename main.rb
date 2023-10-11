@@ -7,8 +7,8 @@ def main
   puts "\n"
   launcher = Launcher.new
   all_books = launcher.books
-  all_person = []
-  all_rentals = []
+  all_person = launcher.person
+  all_rentals = launcher.rentals
 
   loop do
     choice = launcher.option_list

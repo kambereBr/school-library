@@ -128,7 +128,7 @@ module Library
       rental = Rental.new(list_person[person_index.to_i], list_book[book_index.to_i], nil)
       puts 'Date:'
       rental_date = gets.chomp
-      rental.date = rental_date
+      rental.date = rental_date.to_i
       success_msg('Rental')
       list_rental.push(rental)
     else
