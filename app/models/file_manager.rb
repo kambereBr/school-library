@@ -64,19 +64,22 @@ class FileManager
       temp_array.push({
                         'age' => person.age,
                         'name' => person.name,
-                        'id' => person.id,
+                        'id' => person.id
                       })
     end
     File.write(PERSON_PATH, temp_array.to_json)
   end
-  
-  
+
   def load_person
     return unless File.exist?(PERSON_PATH)
 
     json_to_str = File.read(PERSON_PATH)
     @person = JSON.parse(json_to_str).map do |person_data|
-      Person.new(person_data['age'], person_data['name'])
+      person = Person.new(nil, nil)
+      person.age = person_data['age']
+      person.name = person_data['name']
+      person.id = person_data['id']
+      person
     end
   rescue StandardError => e
     puts "Error loading Person : #{e.message}"
@@ -84,22 +87,18 @@ class FileManager
 
   def save_rental
     temp_array = []
-    books_array = []
     @rentals.each do |rental|
-      rental.book.rentals.each do |book| 
-        books_array.push({
-          'title' => book.book.title,
-          'author' => book.book.author,
-        })
-        end
       temp_array.push({
                         'person' => {
                           'age' => rental.person.age,
                           'name' => rental.person.name,
-                          'id' => rental.person.id,
+                          'id' => rental.person.id
                         },
-                        'book' => books_array,
-                        'date' => rental.date,
+                        'book' => {
+                          'title' => rental.book.title,
+                          'author' => rental.book.author
+                        },
+                        'date' => rental.date
                       })
     end
     File.write(RENTALS_PATH, temp_array.to_json)
@@ -108,16 +107,15 @@ class FileManager
   def load_rental
     return unless File.exist?(RENTALS_PATH)
 
-   
     json_to_str = File.read(RENTALS_PATH)
     @rentals = JSON.parse(json_to_str).map do |rental_data|
-      # book = @books.find { |book| book.title == rental_data["book"]["title"] }
-      # person = @person.find { |per| per.id == rental_data["person"]["id"] }
-      puts rental_data["person"]
-      puts rental_data["book"]
-      Rental.new(rental_data["person"], rental_data["book"], rental_data["date"])
+      person = Person.new(rental_data['person']['age'], rental_data['person']['name'])
+      person.id = rental_data['person']['id']
+      book = Book.new(rental_data['book']['title'], rental_data['book']['author'])
+      rental = Rental.new(person, book, rental_data['date'])
+      rental
     end
-  # rescue StandardError => e
-  #   puts "Error loading Rental : #{e.message}"
-  end  
+    # rescue StandardError => e
+    #   puts "Error loading Rental : #{e.message}"
+  end
 end
