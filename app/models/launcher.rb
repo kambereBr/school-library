@@ -41,7 +41,7 @@ class Launcher
       add_new_person(all_person, choice)
     when '4' then add_new_book(all_books)
     when '5' then create_new_rental(all_rentals, all_books, all_person)
-    when '6' then get_user_rental(all_person)
+    when '6' then get_user_rental(all_person, all_rentals)
     when '7'
       @file_manager.books = all_books
       @file_manager.person = all_person
