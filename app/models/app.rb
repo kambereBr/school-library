@@ -59,13 +59,13 @@ module Library
 
   # Method that displays all user rental
   # list_person: array of person
-  def get_user_rental(list_person)
+  def get_user_rental(list_person, all_rentals)
     puts 'All rentals for a given person id'
     id = gets.chomp
     list_person.each do |person|
+      person.rentals = person.filter_user_rentals(all_rentals, id.to_i)
       person.rentals_description if person.id == id.to_i
     end
-    puts "\n"
   end
 
   # Method that helps to add new person to the array
@@ -128,7 +128,7 @@ module Library
       rental = Rental.new(list_person[person_index.to_i], list_book[book_index.to_i], nil)
       puts 'Date:'
       rental_date = gets.chomp
-      rental.date = rental_date
+      rental.date = rental_date.to_i
       success_msg('Rental')
       list_rental.push(rental)
     else

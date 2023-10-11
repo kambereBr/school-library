@@ -1,16 +1,18 @@
 require_relative 'app/models/launcher'
+require_relative 'app/models/file_manager'
 
 # The entry point method
 def main
   puts "\nWelcome to School Library App!"
   puts "\n"
-  all_books = []
-  all_person = []
-  all_rentals = []
+  launcher = Launcher.new
+  all_books = launcher.books
+  all_person = launcher.person
+  all_rentals = launcher.rentals
 
   loop do
-    choice = Launcher.new.option_list
-    Launcher.new.use_cases(choice, all_books, all_person, all_rentals)
+    choice = launcher.option_list
+    launcher.use_cases(choice, all_books, all_person, all_rentals)
   end
 end
 
