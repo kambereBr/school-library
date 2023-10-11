@@ -1,8 +1,7 @@
 require_relative 'nameable'
 
 class Person < Nameable
-  attr_reader :id
-  attr_accessor :age, :name, :rentals, :parent_permission
+  attr_accessor :id, :age, :name, :rentals, :parent_permission
 
   def initialize(age, name = 'Unknown', parent_permission: true)
     super()
@@ -37,6 +36,14 @@ class Person < Nameable
     else
       puts 'No record found'
     end
+  end
+
+  def filter_user_rentals(all_rentals, user_id)
+    array_rentals = []
+    all_rentals.each do |rental|
+      array_rentals.push(Rental.new(rental.person, rental.book, rental.date)) if rental.person.id == user_id
+    end
+    array_rentals
   end
 
   private
