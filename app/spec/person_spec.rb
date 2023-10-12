@@ -1,5 +1,5 @@
-require_relative '../models/book'
 require_relative '../models/person'
+require_relative '../models/book'
 require_relative '../models/rental'
 
 describe '#Person' do
