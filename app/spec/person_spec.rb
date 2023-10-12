@@ -37,16 +37,4 @@ describe '#Person' do
 
     expect(new_person.rentals_description).to eq("Date: 10/12/2023, Book 'The Gatsby' by F. Scott Fitzgerald\n")
   end
-
-  #  it "filter_user_rentals should return all rental for a given user" do
-  #   new_person.id = 123
-  #   rental1 = Rental.new(new_person, new_book, '10/12/2023')
-  #   rental2 = Rental.new(new_person2, new_book, '10/12/2023')
-
-  #   all_rentals = []
-  #   all_rentals.push(rental1)
-  #   all_rentals.push(rental2)
-  #   array_rentals = new_person.filter_user_rentals(all_rentals, 123)
-  #   expect(array_rentals).to eq ([rental1])
-  #  end
 end
