@@ -7,7 +7,6 @@ describe '#Person' do
   let(:new_person2) { Person.new(26, 'Obiba') }
   let(:new_book) { Book.new('The Gatsby', 'F. Scott Fitzgerald') }
 
-
   it 'Should Create a person' do
     expect(new_person.name).to eq('Javier')
     expect(new_person.age).to eq(22)
