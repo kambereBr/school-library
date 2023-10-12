@@ -29,13 +29,15 @@ class Person < Nameable
   end
 
   def rentals_description
+    description = ''
     if @rentals.length.positive?
       @rentals.each do |rental|
-        puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author}"
+        description.concat("Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author}\n")
       end
     else
-      puts 'No record found'
+      description = 'No record found'
     end
+    description
   end
 
   def filter_user_rentals(all_rentals, user_id)

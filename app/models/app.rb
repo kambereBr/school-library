@@ -64,7 +64,7 @@ module Library
     id = gets.chomp
     list_person.each do |person|
       person.rentals = person.filter_user_rentals(all_rentals, id.to_i)
-      person.rentals_description if person.id == id.to_i
+      puts person.rentals_description if person.id == id.to_i
     end
   end
 
